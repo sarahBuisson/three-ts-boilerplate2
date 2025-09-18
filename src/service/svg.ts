@@ -1,4 +1,4 @@
-
+import { DOMParser, XMLSerializer } from 'xmldom-qsa';
 export function mergePathIntoBox( groups: SVGGraphicsElement[] ) {
     const compute= groups.reduce((acc, svgElement) => {
 
@@ -116,13 +116,10 @@ export function doRectsIntersect(rect1: DOMRect, rect2: DOMRect): boolean {
     );
 }
 
-export function groupIntersectingPathsToSvg(svgString: string): string[] {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(svgString, 'image/svg+xml');
-    const paths = Array.from(doc.querySelectorAll('path'));
+export function groupIntersectingPathToSvg2(paths: SVGPathElement[]) {
     const groups: SVGPathElement[][] = [];
 
-    paths.forEach((path) => {
+    paths.forEach((path, indexPath) => {
         const bbox = getBoundingBoxFromSvgPathWithoutGetBBox(path)
         let addedToGroup = false;
 
@@ -140,10 +137,18 @@ export function groupIntersectingPathsToSvg(svgString: string): string[] {
     });
 
     return groups.map((group) => {
-        const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        group.forEach((path) => svgGroup.appendChild(path.cloneNode(true)));
-        return svgGroup.outerHTML;
+        const svgGroup = new DOMParser().parseFromString("<!DOCTYPE html><svg><g></g></svg>", 'image/svg+xml');
+        let g = svgGroup.getElementsByTagName("g")[0];
+        group.forEach((path) => g.appendChild(path.cloneNode(true)));
+        return g;
     });
+}
+
+export function groupIntersectingPathsToSvg(svgString: string): SVGGElement[] {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(svgString, 'image/svg+xml');
+    const paths = Array.from(doc.querySelectorAll('path'));
+    return groupIntersectingPathToSvg2(paths);
 }
 
 export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DOMRect {
@@ -163,7 +168,7 @@ export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DO
     }
 
     let x = 0, y = 0;
-    let minX = 1000000, minY = 100000, maxX = 0, maxY = 0;
+    let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
 
     commands.forEach(command => {
         const type = command[0];
@@ -242,3 +247,49 @@ export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DO
 
     return new DOMRect(minX, minY, maxX - minX, maxY - minY);
 }
+export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement): DOMRect {
+
+    const paths=gElement.getElementsByTagName("path");
+ const boxs=Array.from(paths).map(path=>getBoundingBoxFromSvgPathWithoutGetBBox(path));
+
+ const compute= boxs.reduce((acc, rect) => {
+     acc.x = Math.min(acc.x, rect.x);
+     acc.y = Math.min(acc.y, rect.y);
+     acc.width = Math.max(acc.width, rect.x + rect.width - acc.x);
+     acc.height = Math.max(acc.height, rect.y + rect.height - acc.y);
+     return acc;
+ }, {x: Infinity, y: Infinity, width: 0, height: 0});
+ return compute
+}
+
+class DOMRect {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+
+    constructor(x: number, y: number, width: number, height: number) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    get top(): number {
+        return this.y;
+    }
+
+    get right(): number {
+        return this.x + this.width;
+    }
+
+    get bottom(): number {
+        return this.y + this.height;
+    }
+
+    get left(): number {
+        return this.x;
+    }
+}
+
+export { DOMRect };
