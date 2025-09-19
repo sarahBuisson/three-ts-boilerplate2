@@ -1,6 +1,7 @@
 import { DOMParser, XMLSerializer } from 'xmldom-qsa';
-export function mergePathIntoBox( groups: SVGGraphicsElement[] ) {
-    const compute= groups.reduce((acc, svgElement) => {
+import { svgPathBbox } from "svg-path-bbox";
+export function mergePathIntoBox(groups: SVGGraphicsElement[]) {
+    const compute = groups.reduce((acc, svgElement) => {
 
         if (svgElement instanceof SVGPathElement) {
             const rect = getBoundingBoxFromSvgPathWithoutGetBBox(svgElement)
@@ -11,21 +12,21 @@ export function mergePathIntoBox( groups: SVGGraphicsElement[] ) {
         }
         return acc;
     }, {x: Infinity, y: Infinity, width: 0, height: 0});
-    return  new DOMRect(compute.x,compute.y, compute.width, compute.height);
+    return new DOMRect(compute.x, compute.y, compute.width, compute.height);
 }
 
 export function toSplitedSvg(svgString: string): string {
     const parser = new DOMParser();
     const doc = parser.parseFromString(svgString, 'image/svg+xml');
-       const paths = doc.querySelectorAll('path');
+    const paths = doc.querySelectorAll('path');
     let boundingBoxes: { path: SVGGraphicsElement, rect: DOMRect, groups: SVGGraphicsElement[] }[] = [];
 
     paths.forEach((path) => {
 
-        const bbox =getBoundingBoxFromSvgPathWithoutGetBBox(path)
+        const bbox = getBoundingBoxFromSvgPathWithoutGetBBox(path)
 
-        path.id=JSON.stringify(bbox)
-        if(bbox.x==0&& bbox.y==0){
+        path.id = JSON.stringify(bbox)
+        if (bbox.x == 0 && bbox.y == 0) {
             console.error("ignore this path")
             return;
         }
@@ -35,8 +36,7 @@ export function toSplitedSvg(svgString: string): string {
     boundingBoxes.pop()// on retire le 1er path
 
 
-
-    for(let i=0;i<boundingBoxes.length;i++){
+    for (let i = 0; i < boundingBoxes.length; i++) {
         boundingBoxes.forEach((box1) => {
             boundingBoxes.forEach((box2) => {
                 if (box1 != box2) {
@@ -45,7 +45,7 @@ export function toSplitedSvg(svgString: string): string {
 
                         box1.groups.push(box2.path)
                         box1.groups.push(...box2.groups)
-                        box1.rect= mergePathIntoBox([...box1.groups, ...box2.groups])
+                        box1.rect = mergePathIntoBox([...box1.groups, ...box2.groups])
                         box2.groups = []
                     }
                 }
@@ -81,7 +81,7 @@ export function toSplitedSvg(svgString: string): string {
         rect.setAttribute('y', allBoundingBox.y.toString());
         rect.setAttribute('width', allBoundingBox.width.toString());
         rect.setAttribute('height', allBoundingBox.height.toString());
-      //  rect.setAttribute('stroke', RgbColor.createRandomColor().toCssColorHex());
+        //  rect.setAttribute('stroke', RgbColor.createRandomColor().toCssColorHex());
         rect.setAttribute('fill', 'none');
         doc.documentElement.appendChild(rect);
         doc.documentElement.appendChild(use);
@@ -100,7 +100,7 @@ export function getBoundingBoxesFromSvgPaths(svgString: string): DOMRect[] {
     const boundingBoxes: DOMRect[] = [];
 
     paths.forEach((path) => {
-        const bbox =getBoundingBoxFromSvgPathWithoutGetBBox(path)
+        const bbox = getBoundingBoxFromSvgPathWithoutGetBBox(path)
         boundingBoxes.push(bbox);
     });
 
@@ -151,7 +151,14 @@ export function groupIntersectingPathsToSvg(svgString: string): SVGGElement[] {
     return groupIntersectingPathToSvg2(paths);
 }
 
-export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DOMRect {
+export function getBoundingBoxFromSvgPathWithoutGetBBox(path: SVGPathElement): DOMRect {
+   const box= svgPathBbox(path.getAttribute("d") || "")
+    return new DOMRect(box[0],box[1],box[2]-box[0],box[3]-box[1])
+
+}
+
+
+    export function getBoundingBoxFromSvgPathWithoutGetBBoxOld(path: SVGPathElement): DOMRect {
 
     if (!path) {
         throw new Error('Invalid SVG path string');
@@ -169,10 +176,16 @@ export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DO
 
     let x = 0, y = 0;
     let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
-
-    commands.forEach(command => {
+console.log("number of commands",commands.length)
+    commands.forEach((command, index) => {
         const type = command[0];
-        const args = command.slice(1).trim().split(/[\s,]+/).map(Number);
+        let strings
+        if(type=='c'||'C')
+         strings = command.slice(1).trim().split(/-?\d+(\.\d+)?|[CcQq]/g);
+       else
+           strings=command.slice(1).trim().split(/[\s,]+/)
+        console.log(strings)
+        const args = strings.map(Number);
 
         switch (type) {
             case 'M':
@@ -237,29 +250,33 @@ export function getBoundingBoxFromSvgPathWithoutGetBBox(path:SVGPathElement): DO
             default:
                 throw new Error(`Unsupported path command: ${type}`);
         }
-        if(!isNaN(x)&&!isNaN(y)) {
+        if (!isNaN(x) && !isNaN(y)) {
             minX = Math.min(minX, x);
             minY = Math.min(minY, y);
             maxX = Math.max(maxX, x);
             maxY = Math.max(maxY, y);
+
         }
+        console.log(command)
+        console.log(type,index, minX, minY, maxX, maxY,args)
     });
 
     return new DOMRect(minX, minY, maxX - minX, maxY - minY);
 }
-export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement): DOMRect {
 
-    const paths=gElement.getElementsByTagName("path");
- const boxs=Array.from(paths).map(path=>getBoundingBoxFromSvgPathWithoutGetBBox(path));
+export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement) : {x: number, y: number, width: number, height: number} {
 
- const compute= boxs.reduce((acc, rect) => {
-     acc.x = Math.min(acc.x, rect.x);
-     acc.y = Math.min(acc.y, rect.y);
-     acc.width = Math.max(acc.width, rect.x + rect.width - acc.x);
-     acc.height = Math.max(acc.height, rect.y + rect.height - acc.y);
-     return acc;
- }, {x: Infinity, y: Infinity, width: 0, height: 0});
- return compute
+    const paths = gElement.getElementsByTagName("path");
+    const boxs = Array.from(paths).map(path => getBoundingBoxFromSvgPathWithoutGetBBox(path));
+
+    const compute = boxs.reduce((acc, rect) => {
+        acc.x = Math.min(acc.x, rect.x);
+        acc.y = Math.min(acc.y, rect.y);
+        acc.width = Math.max(acc.width, rect.x + rect.width - acc.x);
+        acc.height = Math.max(acc.height, rect.y + rect.height - acc.y);
+        return acc;
+    }, {x: Infinity, y: Infinity, width: 0, height: 0});
+    return compute
 }
 
 class DOMRect {
