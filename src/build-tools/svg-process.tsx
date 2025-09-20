@@ -1,6 +1,6 @@
 
 import { DOMParser, XMLSerializer } from 'xmldom-qsa';
-import { getBoundingBoxFromGElementWithoutGetBBox, getBoundingBoxFromSvgPathWithoutGetBBox } from '../service/svg';
+import { getBoundingBoxFromGElementWithoutGetBBox, getBoundingBoxFromSvgPathWithoutGetBBox } from '../service/svg/svg';
 import { svgPathBbox } from "svg-path-bbox";
 
 export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSVGElement): string {

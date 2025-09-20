@@ -1,6 +1,6 @@
 import { getBoundingBoxFromSvgPathWithoutGetBBox } from './svg';
 import { DOMParser } from 'xmldom-qsa';
-import { svgPathBbox } from "svg-path-bbox";
+
 describe('Example Test Suite', () => {
     it('should add two numbers', () => {
         const sum = 1 + 2

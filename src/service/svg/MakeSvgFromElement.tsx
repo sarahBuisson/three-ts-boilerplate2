@@ -1,4 +1,4 @@
-import { getBoundingBoxFromSvgPathWithoutGetBBox, mergePathIntoBox } from '../svg';
+import { getBoundingBoxFromSvgPathWithoutGetBBox, mergePathIntoBox } from './svg';
 
 export function makeSvgFromElement(svgElement: HTMLElement, svgDoc: Document) {
 
@@ -31,10 +31,8 @@ export function makeSvgFromElement(svgElement: HTMLElement, svgDoc: Document) {
     const rootAttr = svgDoc.rootElement!!.getAttributeNames()
 
 
-    let attrStr = rootAttr.filter(it => it != "viewBox").map((attr) => {
-        return attr += "=\"" + svgDoc.rootElement!!.getAttribute(attr)!!.valueOf() + "\" ";
-    }).join(" ")
+
     //    svgElement.box
-    attrStr = `  viewBox="${Math.round(boundBoxe.x)} ${Math.round(boundBoxe.y)} ${Math.round(boundBoxe.width)} ${Math.round(boundBoxe.height)}"  ` + attrStr
+    const attrStr = `  viewBox="${Math.round(boundBoxe.x)} ${Math.round(boundBoxe.y)} ${Math.round(boundBoxe.width)} ${Math.round(boundBoxe.height)}"  `
     return "<svg " + attrStr + ">" + svgStr + "</svg>";
 }

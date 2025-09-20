@@ -7,7 +7,7 @@
     "dev": "ts-node src/build-tools/process-assets.ts && vite",
     "start": "ts-node src/build-tools/process-assets.ts &&  vite",
     "build": "tsc && vite build  && ts-node src/build-tools/process-assets.ts",
-    "build-asset2": "tsx src/build-tools/process-assets2.tsx",
+    "build-asset": "tsx src/build-tools/process-assets.tsx",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",

@@ -1,5 +1,6 @@
 import { DOMParser, XMLSerializer } from 'xmldom-qsa';
 import { svgPathBbox } from "svg-path-bbox";
+
 export function mergePathIntoBox(groups: SVGGraphicsElement[]) {
     const compute = groups.reduce((acc, svgElement) => {
 
@@ -152,13 +153,13 @@ export function groupIntersectingPathsToSvg(svgString: string): SVGGElement[] {
 }
 
 export function getBoundingBoxFromSvgPathWithoutGetBBox(path: SVGPathElement): DOMRect {
-   const box= svgPathBbox(path.getAttribute("d") || "")
-    return new DOMRect(box[0],box[1],box[2]-box[0],box[3]-box[1])
+    const box = svgPathBbox(path.getAttribute("d") || "")
+    return new DOMRect(box[0], box[1], box[2] - box[0], box[3] - box[1])
 
 }
 
 
-    export function getBoundingBoxFromSvgPathWithoutGetBBoxOld(path: SVGPathElement): DOMRect {
+export function getBoundingBoxFromSvgPathWithoutGetBBoxOld(path: SVGPathElement): DOMRect {
 
     if (!path) {
         throw new Error('Invalid SVG path string');
@@ -176,15 +177,13 @@ export function getBoundingBoxFromSvgPathWithoutGetBBox(path: SVGPathElement): D
 
     let x = 0, y = 0;
     let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
-console.log("number of commands",commands.length)
     commands.forEach((command, index) => {
         const type = command[0];
         let strings
-        if(type=='c'||'C')
-         strings = command.slice(1).trim().split(/-?\d+(\.\d+)?|[CcQq]/g);
-       else
-           strings=command.slice(1).trim().split(/[\s,]+/)
-        console.log(strings)
+        if (type == 'c' || 'C')
+            strings = command.slice(1).trim().split(/-?\d+(\.\d+)?|[CcQq]/g);
+        else
+            strings = command.slice(1).trim().split(/[\s,]+/)
         const args = strings.map(Number);
 
         switch (type) {
@@ -257,14 +256,17 @@ console.log("number of commands",commands.length)
             maxY = Math.max(maxY, y);
 
         }
-        console.log(command)
-        console.log(type,index, minX, minY, maxX, maxY,args)
     });
 
     return new DOMRect(minX, minY, maxX - minX, maxY - minY);
 }
 
-export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement) : {x: number, y: number, width: number, height: number} {
+export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement): {
+    x: number,
+    y: number,
+    width: number,
+    height: number
+} {
 
     const paths = gElement.getElementsByTagName("path");
     const boxs = Array.from(paths).map(path => getBoundingBoxFromSvgPathWithoutGetBBox(path));
@@ -275,7 +277,7 @@ export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement) 
         acc.width = Math.max(acc.width, rect.x + rect.width - acc.x);
         acc.height = Math.max(acc.height, rect.y + rect.height - acc.y);
         return acc;
-    }, {x: Infinity, y: Infinity, width: 0, height: 0});
+    }, {x: boxs[0].x, y: boxs[0].y, width: boxs[0].width, height: boxs[0].height});
     return compute
 }
 
@@ -306,6 +308,10 @@ class DOMRect {
 
     get left(): number {
         return this.x;
+    }
+
+    toJson(): string {
+        return JSON.stringify(this);
     }
 }
 

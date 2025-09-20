@@ -5,7 +5,7 @@ import { DOMParser, XMLSerializer } from 'xmldom-qsa';
 import { AssetCollection, AssetData, AssetsDatas, FileData } from './model-asset';
 import { buildCustomCollections } from './custom-collection';
 import { flattenGElementToPaths, transformGElementToSvg } from './svg-process';
-import { groupIntersectingPathToSvg2 } from '../service/svg';
+import { groupIntersectingPathToSvg2 } from '../service/svg/svg';
 
 // Recreate __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -101,7 +101,7 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
                 paths.forEach(p => newGElement.appendChild(p.cloneNode(true)))
                 // Save the new SVG to a file
                 const svgContent = transformGElementToSvg(gElement, svgElement)
-                let idAsset = `${fileName.replace(".svg","")}_group${i + 1}`;
+                let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
                 saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
 
             } else {
@@ -119,7 +119,7 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
                 Array.from(paths).forEach(p => newGElement.appendChild(p.cloneNode(true)))
                 // Save the new SVG to a file
                 const svgContent = transformGElementToSvg(gElement, svgElement)
-                let idAsset = `${fileName.replace(".svg","")}_group${i + 1}`;
+                let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
                 saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
             }
         }
@@ -127,7 +127,7 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
         const groups = groupIntersectingPathToSvg2(Array.from(pathElements))
         groups.forEach((g, i) => {
             const svgContent = transformGElementToSvg(g, svgElement)
-            let idAsset = `${fileName.replace(".svg","")}_group${i + 1}`;
+            let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
             saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
         });
     }
@@ -147,24 +147,19 @@ async function extractAndProcess(fileRelativePath: string, datas: AssetsDatas) {
         console.log("svg file :" + fileName)
         if (/s\d*\.svg$/.test(fileName)) {
             console.log("divid svg : " + fileName)
-            /*
-            console.log(regex.test("s123.svg")); // true
- console.log(regex.test("s456.svg")); // true
- console.log(regex.test("sabc.svg")); // false
-             */
 
             dividSvg(filePath, destDirectory, fileName, datas);
 
-        }else {
+        } else {
             console.log("copy svg without divid : " + fileName)
         }
-    }else {
+    } else {
         console.log("copy file : " + fileName)
     }
 
 
     // Copier le fichier dans le répertoire de destination
-    await fs.copy( path.join(assetsDir,fileRelativePath), path.join(computedAssetsDir, fileRelativePath));
+    await fs.copy(path.join(assetsDir, fileRelativePath), path.join(computedAssetsDir, fileRelativePath));
 
     // Retourner les informations extraites
     let newVar = new FileData(
@@ -217,14 +212,14 @@ async function processAssets() {
 function saveSvgInFile(newSvgContent: string, filePath: string, newDirName: string, fileName: string, idAsset: string) {
 
 
-    if (!fs.existsSync(computedAssetsDir+"/"+newDirName)) {
-        fs.mkdirSync(computedAssetsDir+"/"+newDirName,{recursive:true});
+    if (!fs.existsSync(computedAssetsDir + "/" + newDirName)) {
+        fs.mkdirSync(computedAssetsDir + "/" + newDirName, {recursive: true});
     }
 
     const newFileName = `${idAsset}.svg`;
-    const newFilePath = (computedAssetsDir+"\\"+newDirName + "\\" + newFileName);
+    const newFilePath = (computedAssetsDir + "\\" + newDirName + "\\" + newFileName);
     fs.writeFileSync(newFilePath, newSvgContent, 'utf-8');
-    console.log("createFile : ",newFilePath,computedAssetsDir+ newDirName)
+    console.log("createFile : ", newFilePath, computedAssetsDir + newDirName)
     // Add the new file to the collection
     return (new AssetData(idAsset, filePath, newFileName));
 }
