@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "ts-node src/build-tools/process-assets.ts && vite",
-    "start": "ts-node src/build-tools/process-assets.ts &&  vite",
-    "build": "tsc && vite build  && ts-node src/build-tools/process-assets.ts",
+    "dev": " vite",
+    "start": "tsx src/build-tools/process-assets.tsx &&  vite",
+    "build": "tsc && vite build  && tx src/build-tools/process-assets.tsx",
     "build-asset": "tsx src/build-tools/process-assets.tsx",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",

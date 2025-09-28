@@ -1,0 +1,661 @@
+{
+  "fileDatas": [
+    {
+      "filePathName": "algues.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "brown_photostudio_01_1k.hdr",
+      "extension": ".hdr",
+      "assets": []
+    },
+    {
+      "filePathName": "cleanSvg.js",
+      "extension": ".js",
+      "assets": []
+    },
+    {
+      "filePathName": "fishs1.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "algues2.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants1.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants2.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants4.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants1.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants12.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants13.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "plants3.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "shapes.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "shapes2.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "shapes3.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "summer_background_47_a.eps",
+      "extension": ".eps",
+      "assets": []
+    },
+    {
+      "filePathName": "tree.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "tree1.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "tree2.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "tree3.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "vite.svg",
+      "extension": ".svg",
+      "assets": []
+    },
+    {
+      "filePathName": "water.jpg",
+      "extension": ".jpg",
+      "assets": []
+    }
+  ],
+  "collections": [
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "algues_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 80.49045141045976,
+            "height": 156.80657416734357
+          }
+        },
+        {
+          "id": "algues_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 79.36383072225486,
+            "height": 226.19999999999996
+          }
+        },
+        {
+          "id": "algues_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 99.11445574937318,
+            "height": 125.71700000000016
+          }
+        },
+        {
+          "id": "algues_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.44194664579965,
+            "height": 100.48749867310755
+          }
+        },
+        {
+          "id": "algues_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.46280117136922,
+            "height": 122.30754050958643
+          }
+        },
+        {
+          "id": "algues_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 60.306865309873615,
+            "height": 134.8736697976185
+          }
+        },
+        {
+          "id": "algues_group7",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group7.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 107.68500000000006,
+            "height": 131.9650887054969
+          }
+        },
+        {
+          "id": "algues_group8",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\algues.svg",
+          "computedFilePathName": "algues/algues_group8.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 79.36483072224752,
+            "height": 176.26100000000002
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "fishs1_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 199.63234395967473,
+            "height": 96.35131679754426
+          }
+        },
+        {
+          "id": "fishs1_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 201.17540851205112,
+            "height": 78.62239970594898
+          }
+        },
+        {
+          "id": "fishs1_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 199.99791454980425,
+            "height": 89.81761517519149
+          }
+        },
+        {
+          "id": "fishs1_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 177.77044444444448,
+            "height": 90.91000000000003
+          }
+        },
+        {
+          "id": "fishs1_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 171.57800000000015,
+            "height": 60.20100000000002
+          }
+        },
+        {
+          "id": "fishs1_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\fishs1.svg",
+          "computedFilePathName": "fishs1/fishs1_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 199.1604444444444,
+            "height": 72.95741731395736
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "algues2_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 80.49045141045976,
+            "height": 156.80657416734357
+          }
+        },
+        {
+          "id": "algues2_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 79.36383072225486,
+            "height": 226.19999999999996
+          }
+        },
+        {
+          "id": "algues2_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 99.11445574937318,
+            "height": 125.71700000000016
+          }
+        },
+        {
+          "id": "algues2_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.44194664579965,
+            "height": 100.48749867310755
+          }
+        },
+        {
+          "id": "algues2_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.46280117136922,
+            "height": 122.30754050958643
+          }
+        },
+        {
+          "id": "algues2_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 60.306865309873615,
+            "height": 134.8736697976185
+          }
+        },
+        {
+          "id": "algues2_group7",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group7.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 107.68500000000006,
+            "height": 131.9650887054969
+          }
+        },
+        {
+          "id": "algues2_group8",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\algues2.svg",
+          "computedFilePathName": "gravure\\algues2/algues2_group8.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 79.36483072224752,
+            "height": 176.26100000000002
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "plants1_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 114.69134986369453,
+            "height": 210.48312011889342
+          }
+        },
+        {
+          "id": "plants1_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.56087685160404,
+            "height": 205.38432986940012
+          }
+        },
+        {
+          "id": "plants1_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 128.2558109902663,
+            "height": 205.8936228102011
+          }
+        },
+        {
+          "id": "plants1_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 103.9125251279824,
+            "height": 209.10338729860206
+          }
+        },
+        {
+          "id": "plants1_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 97.1589034726413,
+            "height": 206.7515407424014
+          }
+        },
+        {
+          "id": "plants1_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants1.svg",
+          "computedFilePathName": "gravure\\plants1/plants1_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.83795257990442,
+            "height": 204.78729220037502
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants2.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\gravure\\plants4.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "plants1_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 114.69134986369453,
+            "height": 210.48312011889342
+          }
+        },
+        {
+          "id": "plants1_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.56087685160404,
+            "height": 205.38432986940012
+          }
+        },
+        {
+          "id": "plants1_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 128.2558109902663,
+            "height": 205.8936228102011
+          }
+        },
+        {
+          "id": "plants1_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 103.9125251279824,
+            "height": 209.10338729860206
+          }
+        },
+        {
+          "id": "plants1_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 97.1589034726413,
+            "height": 206.7515407424014
+          }
+        },
+        {
+          "id": "plants1_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants1.svg",
+          "computedFilePathName": "plants1/plants1_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.83795257990442,
+            "height": 204.78729220037502
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "plants12_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 224.1481643804966,
+            "height": 305.68135074612235
+          }
+        },
+        {
+          "id": "plants12_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.56087685160404,
+            "height": 205.38432986940012
+          }
+        },
+        {
+          "id": "plants12_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 128.2558109902663,
+            "height": 205.8936228102011
+          }
+        },
+        {
+          "id": "plants12_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 103.9125251279824,
+            "height": 209.10338729860206
+          }
+        },
+        {
+          "id": "plants12_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 97.1589034726413,
+            "height": 206.7515407424014
+          }
+        },
+        {
+          "id": "plants12_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants12.svg",
+          "computedFilePathName": "plants12/plants12_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.83795257990442,
+            "height": 204.78729220037502
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+      "description": "",
+      "assets": [
+        {
+          "id": "plants13_group1",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group1.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 114.69134986369453,
+            "height": 210.48312011889342
+          }
+        },
+        {
+          "id": "plants13_group2",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group2.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 120.56087685160404,
+            "height": 205.38432986940012
+          }
+        },
+        {
+          "id": "plants13_group3",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group3.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 128.2558109902663,
+            "height": 205.8936228102011
+          }
+        },
+        {
+          "id": "plants13_group4",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group4.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 103.9125251279824,
+            "height": 209.10338729860206
+          }
+        },
+        {
+          "id": "plants13_group5",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group5.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 97.1589034726413,
+            "height": 206.7515407424014
+          }
+        },
+        {
+          "id": "plants13_group6",
+          "originFilePathName": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants13.svg",
+          "computedFilePathName": "plants13/plants13_group6.svg",
+          "classes": [],
+          "dimensions": {
+            "width": 122.83795257990442,
+            "height": 204.78729220037502
+          }
+        }
+      ],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\plants3.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\shapes.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\shapes2.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    },
+    {
+      "id": "C:\\Users\\sarah\\workspace\\workspace_temp\\vite-r3f-ts-template\\assets\\shapes3.svg",
+      "description": "",
+      "assets": [],
+      "custom": false
+    }
+  ]
+}

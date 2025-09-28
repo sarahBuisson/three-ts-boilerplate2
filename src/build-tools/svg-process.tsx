@@ -3,7 +3,7 @@ import { DOMParser, XMLSerializer } from 'xmldom-qsa';
 import { getBoundingBoxFromGElementWithoutGetBBox, getBoundingBoxFromSvgPathWithoutGetBBox } from '../service/svg/svg';
 import { svgPathBbox } from "svg-path-bbox";
 
-export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSVGElement): string {
+export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSVGElement): {content:string, box:{ x: number; y: number; width: number; height: number }} {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString('<svg></svg>', 'application/xml');
 
@@ -16,11 +16,11 @@ export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSV
 
     // Ajouter l'élément <g> au nouvel SVG
     newSvgElement.appendChild(gElement.cloneNode(true));
-    const box=getBoundingBoxFromGElementWithoutGetBBox(gElement)
+    const box= getBoundingBoxFromGElementWithoutGetBBox(gElement)
     newSvgElement.setAttribute("viewBox", `${box.x-1} ${box.y-1} ${box.width+1} ${box.height+1}`);
 
     // Sérialiser le nouvel SVG
-    return new XMLSerializer().serializeToString(newSvgElement);
+    return {content:new XMLSerializer().serializeToString(newSvgElement), box};
 }
 
 export function groupIntersectingPaths(paths: SVGPathElement[]): SVGGElement[] {

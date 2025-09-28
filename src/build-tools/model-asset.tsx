@@ -1,10 +1,12 @@
 export class FileData {
     filePathName: string;
     extension?: string;
+    assets?: AssetData[];
 
-    constructor(filePathName: string, extension: string = "") {
+    constructor(filePathName: string, extension: string = "", assets: AssetData[] = []) {
         this.filePathName = filePathName;
         this.extension = extension;
+        this.assets = assets;
     }
 }
 
@@ -14,6 +16,7 @@ export class AssetData {
     computedFilePathName: string
 
     classes: string[];
+    dimensions?: { width: number; height: number };
 
     constructor(id: string, originFilePathName: string, computedFilePathName: string, classes: string[]=[]) {
         this.id = id;

@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useControls } from 'leva'
 import { Perf } from 'r3f-perf'
-import React, { ReactElement, useRef } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { BoxGeometry, BufferGeometry, Mesh, MeshBasicMaterial, TextureLoader, Vector3 } from 'three'
 import { Cube } from './Cube'
 import { Sphere } from './Sphere'
@@ -14,6 +14,10 @@ import { buildPassingMap, Kase2D, NormalTableau } from '../../service/tableau';
 import { GroundHeight } from './GroundHeight';
 import { SpriteCustom } from './SpriteCustom';
 import { DeformedBox } from '../aquarium/DeformedBox';
+import { AssetsDatas, FileData } from '../../build-tools/model-asset';
+
+const assetsDatas = await fetch('./assets/data.json').then(res => res.json() as Promise<AssetsDatas>)
+
 
 function getInput(keyboard: any, mouse: { x: number, y: number }) {
     let [x, y, z] = [0, 0, 0];
@@ -48,15 +52,29 @@ l.fillLab()
 const passingMap = buildPassingMap(l.tableau, 3, 3)
 
 const heightMap: number[][] = passingMap.map(i => i.map(j => j ? 0 : 1));
+
+const obstacleSpriteMap = ["algues_group1",
+    "algues_group1",
+    "algues_group2",
+    "algues_group3",
+    "algues_group4"   , "algues_group5"  ,  "algues_group6",  "algues_group7",  "algues_group8"
+ ]
 // @ts-ignore
 const stuffMap: ((v: Vector3) => ReactElement | string | undefined)[][] = passingMap
-    .map(i => i.map(j => j ? undefined : (position: Vector3) =>
-        SpriteCustom({
-                position,
-                textureName: "./assets/tree.svg",
-                key: "" + position.x + " " + position.y + " " + position.z
-            }
-        ) as (ReactElement)));
+    .map(i => i.map(j => {
+        let assetId = obstacleSpriteMap[Math.floor(Math.random() * obstacleSpriteMap.length)];
+        const assetData = assetsDatas?.collections.flatMap(it => it.assets)?.find(it => it.id == assetId)!!
+       console.log(assetData,assetId)
+        let textureName ='./assets/'+(assetData.computedFilePathName||"star.svg")
+        return j ? undefined : (position: Vector3) =>
+            SpriteCustom({
+                    position,
+                    textureName: textureName,
+                    key: "" + position.x + " " + position.y + " " + position.z,
+                    scale: new Vector3(1, assetData?.dimensions ? (assetData?.dimensions?.height / assetData?.dimensions?.width) : 1, 1)
+                }
+            ) as (ReactElement);
+    }));
 heightMap[0][0] = 20;
 
 function Scene() {
@@ -79,6 +97,7 @@ function Scene() {
             cubeRef.current!.rotation.y += delta / 3
         }
     })
+
 
     // let texture = useTexture('/assets/vite.svg');
     let geo = new BufferGeometry()

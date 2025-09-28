@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const assetsDir = path.resolve(__dirname, '../../assets');
-const computedAssetsDir = path.resolve(__dirname, '../../dist/assets');
+const computedAssetsDir = path.resolve(__dirname, '../../public/assets');
 const dataFilePath = path.join(computedAssetsDir, 'data.json');
 console.log(assetsDir, computedAssetsDir)
 
@@ -58,15 +58,20 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
 
     const pathElements = svgElement.getElementsByTagName("path")
 
-    let collection = new AssetCollection(filePath)
-    datas.collections.push(collection);
+    let collectionData = new AssetCollection(filePath)
+    let fileData = new FileData(fileName, path.extname(fileName).toLowerCase());
+    datas.collections.push(collectionData);
     if (gElements.length == 1) {
         console.log("only one g element, flatten it")
         const paths = flattenGElementToPaths(svgElement)
         const groups = groupIntersectingPathToSvg2(paths)
         groups.forEach((g, i) => {
-            const svgContent = transformGElementToSvg(g, svgElement)
+            const {content: svgContent, box} = transformGElementToSvg(g, svgElement)
             let idAsset = `${fileName}_group${i + 1}`;
+            let assetData = new AssetData(idAsset, filePath, `${destDirectory}/${idAsset}.svg`);
+            assetData.dimensions = {width: box.width, height: box.height}
+            collectionData.assets.push(assetData)
+
             saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
         });
     } else if (gElements.length > 1) {
@@ -87,10 +92,14 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
                 console.log("nested g element" + gElement.getAttribute("id"))
                 console.log("id:", gElement.getAttribute("id"))
 
-                const svgIntermediateContent = transformGElementToSvg(gElement, svgElement)
+                const {
+                    content: svgIntermediateDoc,
+                    box: boxOld
+                } = transformGElementToSvg(gElement, svgElement)
 
-                const svgIntermediateDoc = parser.parseFromString(svgIntermediateContent, 'application/xml');
-                const paths = flattenGElementToPaths(svgElement)
+                const svg2 = parser.parseFromString(svgIntermediateDoc, 'application/xml');
+
+                const paths = flattenGElementToPaths(svg2.getElementsByTagName("g")[0])
 
                 const xmlDoc = parser.parseFromString('<svg></svg>', 'application/xml');
 
@@ -100,8 +109,12 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
                 const newGElement = xmlDoc.createElementNS('http://www.w3.org/2000/svg', 'g');
                 paths.forEach(p => newGElement.appendChild(p.cloneNode(true)))
                 // Save the new SVG to a file
-                const svgContent = transformGElementToSvg(gElement, svgElement)
+                const {content: svgContent, box} = transformGElementToSvg(gElement, svgElement)
                 let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
+                let assetData = new AssetData(idAsset, filePath, `${destDirectory}/${idAsset}.svg`);
+                assetData.dimensions = {width: box.width, height: box.height}
+                collectionData.assets.push(assetData)
+
                 saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
 
             } else {
@@ -118,15 +131,20 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
 
                 Array.from(paths).forEach(p => newGElement.appendChild(p.cloneNode(true)))
                 // Save the new SVG to a file
-                const svgContent = transformGElementToSvg(gElement, svgElement)
+                const {content: svgContent, box} = transformGElementToSvg(gElement, svgElement)
                 let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
+
+                let assetData = new AssetData(idAsset, filePath, `${destDirectory}/${idAsset}.svg`);
+                assetData.dimensions = {width: box.width, height: box.height}
+                collectionData.assets.push(assetData)
+
                 saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
             }
         }
     } else if (pathElements.length > 0) {
         const groups = groupIntersectingPathToSvg2(Array.from(pathElements))
         groups.forEach((g, i) => {
-            const svgContent = transformGElementToSvg(g, svgElement)
+            const {content: svgContent, box} = transformGElementToSvg(g, svgElement)
             let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
             saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
         });

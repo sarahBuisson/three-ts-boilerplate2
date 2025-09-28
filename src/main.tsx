@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { ACESFilmicToneMapping, SRGBColorSpace } from 'three'
 import './styles/main.css'
 import { AquariumScene } from './components/aquarium/AquariumScene';
+import { Scene } from './components/labyrinthGame/Scene';
 
 function Main() {
   return (
@@ -25,7 +26,7 @@ function Main() {
         }}
         shadows
       >
-        <AquariumScene />
+        <Scene />
       </Canvas>
     </div>
   )
