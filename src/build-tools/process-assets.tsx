@@ -142,10 +142,14 @@ function dividSvg(filePath: string, destDirectory: string, fileName: string, dat
             }
         }
     } else if (pathElements.length > 0) {
+        console.log("no g element, process paths", pathElements.length)
         const groups = groupIntersectingPathToSvg2(Array.from(pathElements))
         groups.forEach((g, i) => {
             const {content: svgContent, box} = transformGElementToSvg(g, svgElement)
             let idAsset = `${fileName.replace(".svg", "")}_group${i + 1}`;
+            let assetData = new AssetData(idAsset, filePath, `${destDirectory}/${idAsset}.svg`);
+            assetData.dimensions = {width: box.width, height: box.height}
+            collectionData.assets.push(assetData)
             saveSvgInFile(svgContent, filePath, destDirectory, fileName, idAsset);
         });
     }

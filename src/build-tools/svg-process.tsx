@@ -1,9 +1,11 @@
-
 import { DOMParser, XMLSerializer } from 'xmldom-qsa';
 import { getBoundingBoxFromGElementWithoutGetBBox, getBoundingBoxFromSvgPathWithoutGetBBox } from '../service/svg/svg';
 import { svgPathBbox } from "svg-path-bbox";
 
-export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSVGElement): {content:string, box:{ x: number; y: number; width: number; height: number }} {
+export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSVGElement): {
+    content: string,
+    box: { x: number; y: number; width: number; height: number }
+} {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString('<svg></svg>', 'application/xml');
 
@@ -13,36 +15,44 @@ export function transformGElementToSvg(gElement: SVGGElement, originalSvg: SVGSV
     Array.from(originalSvg.attributes).forEach(attr => {
         newSvgElement.setAttribute(attr.name, attr.value);
     });
-
+    const defs = originalSvg.getElementsByTagName("defs")
+    if (defs.length > 0)
+        newSvgElement.appendChild(defs.item(0)!!.cloneNode(true))
     // Ajouter l'élément <g> au nouvel SVG
     newSvgElement.appendChild(gElement.cloneNode(true));
-    const box= getBoundingBoxFromGElementWithoutGetBBox(gElement)
-    newSvgElement.setAttribute("viewBox", `${box.x-1} ${box.y-1} ${box.width+1} ${box.height+1}`);
+    const box = getBoundingBoxFromGElementWithoutGetBBox(gElement)
+    Array.from(originalSvg.attributes)
+        .filter(attr => attr.name != "viewBox")
+        .forEach(attr => {
+            newSvgElement.setAttribute(attr.name, attr.value);
+
+        });
+    newSvgElement.setAttribute("viewBox", `${box.x - 1} ${box.y - 1} ${box.width + 1} ${box.height + 1}`);
 
     // Sérialiser le nouvel SVG
-    return {content:new XMLSerializer().serializeToString(newSvgElement), box};
+    return {content: new XMLSerializer().serializeToString(newSvgElement), box};
 }
 
 export function groupIntersectingPaths(paths: SVGPathElement[]): SVGGElement[] {
-   const retour:SVGGElement[]=[]
+    const retour: SVGGElement[] = []
     paths.forEach(path => {
         const newGElement = path.cloneNode(true) as SVGGElement;
         retour.push(newGElement);
         const bbox1 = getBoundingBoxFromSvgPathWithoutGetBBox(path);
         let intersects = false;
-if(path.children)
-        for (const otherPath of Array.from(path.children)) {
-            const bbox2 = getBoundingBoxFromSvgPathWithoutGetBBox(otherPath as SVGPathElement);
-            if (
-                bbox1.x < bbox2.x + bbox2.width &&
-                bbox1.x + bbox1.width > bbox2.x &&
-                bbox1.y < bbox2.y + bbox2.height &&
-                bbox1.y + bbox1.height > bbox2.y
-            ) {
-                intersects = true;
-                break;
+        if (path.children)
+            for (const otherPath of Array.from(path.children)) {
+                const bbox2 = getBoundingBoxFromSvgPathWithoutGetBBox(otherPath as SVGPathElement);
+                if (
+                    bbox1.x < bbox2.x + bbox2.width &&
+                    bbox1.x + bbox1.width > bbox2.x &&
+                    bbox1.y < bbox2.y + bbox2.height &&
+                    bbox1.y + bbox1.height > bbox2.y
+                ) {
+                    intersects = true;
+                    break;
+                }
             }
-        }
 
         if (intersects) {
             newGElement.appendChild(path.cloneNode(true));
@@ -105,7 +115,7 @@ function calculatePathBBox(path: SVGPathElement): { x: number; y: number; width:
                     currentY = values[i + 5];
                 }
                 break;
-                case "c": // Cubic Bezier curve
+            case "c": // Cubic Bezier curve
                 for (let i = 0; i < values.length; i += 6) {
                     currentX += values[i + 4];
                     currentY += values[i + 5];

@@ -270,7 +270,7 @@ export function getBoundingBoxFromGElementWithoutGetBBox(gElement: SVGGElement):
 
     const paths = gElement.getElementsByTagName("path");
     const boxs = Array.from(paths).map(path => getBoundingBoxFromSvgPathWithoutGetBBox(path));
-
+if(boxs.length==0) return {x:0,y:0,width:0,height:0}
     const compute = boxs.reduce((acc, rect) => {
         acc.x = Math.min(acc.x, rect.x);
         acc.y = Math.min(acc.y, rect.y);

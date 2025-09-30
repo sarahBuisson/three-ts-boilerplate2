@@ -53,7 +53,11 @@ const passingMap = buildPassingMap(l.tableau, 3, 3)
 
 const heightMap: number[][] = passingMap.map(i => i.map(j => j ? 0 : 1));
 
-const obstacleSpriteMap = ["algues_group1",
+const obstacleSpriteMap4=["styletrees.svg_group1","styletrees.svg_group2","styletrees.svg_group3","styletrees.svg_group4","styletrees.svg_group5","styletrees.svg_group6","styletrees.svg_group7","styletrees.svg_group8"]
+const obstacleSpriteMap=["trees3_group1","trees3_group2","trees3_group3","trees3_group4","trees3_group5","trees3_group6","trees3_group7","trees3_group8"]
+const obstacleSpriteMap3=["simpletrees_group1","simpletrees_group2","simpletrees_group3","simpletrees_group4","simpletrees_group5","simpletrees_group6","simpletrees_group7","simpletrees_group8"]
+const obstacleSpriteMap2=["trees.svg_group1","trees.svg_group2","trees.svg_group3","trees.svg_group4","trees.svg_group5","trees.svg_group6"]
+const obstacleSpriteMapOld = ["algues_group1",
     "algues_group1",
     "algues_group2",
     "algues_group3",
